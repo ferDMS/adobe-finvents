@@ -16,6 +16,10 @@
 .leaderboard-list {
   list-style: none;
   padding: 0;
+  max-height: 300px; /* Fixed height */
+  overflow-y: auto; /* Scrollable */
+  border: 1px solid #ddd;
+  border-radius: 4px;
 }
 
 .leaderboard-item {

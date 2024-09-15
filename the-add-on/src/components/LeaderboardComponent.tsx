@@ -8,15 +8,18 @@ interface LeaderboardComponentProps {
 }
 
 const LeaderboardComponent: React.FC<LeaderboardComponentProps> = ({ contributors }) => {
+    // Sort contributors by amount paid in decreasing order
+    const sortedContributors = [...contributors].sort((a, b) => b.paid - a.paid);
+
     return (
         <div className="leaderboard">
-            <h2>Leaderboard</h2>
+            <h2 className="leaderboard-header">Leaderboard</h2>
             <ul className="leaderboard-list">
                 <li className="leaderboard-item header">
                     <span>User</span>
                     <span>Amount Paid</span>
                 </li>
-                {contributors.map((contributor, index) => (
+                {sortedContributors.map((contributor, index) => (
                     <li key={index} className="leaderboard-item">
                         <span>{contributor.user.name}</span>
                         <span>{contributor.paid.toFixed(2)}</span>
