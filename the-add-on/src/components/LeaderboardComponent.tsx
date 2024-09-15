@@ -1,13 +1,10 @@
+// the-add-on/src/components/LeaderboardComponent.tsx
 import React from "react";
 import "./LeaderboardComponent.css";
-
-interface Contributor {
-    name: string;
-    amount: number;
-}
+import { Member } from "../api";
 
 interface LeaderboardComponentProps {
-    contributors: Contributor[];
+    contributors: Member[];
 }
 
 const LeaderboardComponent: React.FC<LeaderboardComponentProps> = ({ contributors }) => {
@@ -18,14 +15,14 @@ const LeaderboardComponent: React.FC<LeaderboardComponentProps> = ({ contributor
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Contribution</th>
+                        <th>Amount</th>
                     </tr>
                 </thead>
                 <tbody>
                     {contributors.map((contributor, index) => (
                         <tr key={index}>
-                            <td>{contributor.name}</td>
-                            <td>${contributor.amount.toFixed(2)}</td>
+                            <td>{contributor.user.name}</td>
+                            <td>${contributor.paid}</td>
                         </tr>
                     ))}
                 </tbody>
