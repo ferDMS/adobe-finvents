@@ -5,7 +5,7 @@ import "@spectrum-web-components/theme/express/theme-light.js";
 import { Theme } from "@swc-react/theme";
 import "./App.css";
 import { AddOnSDKAPI } from "https://new.express.adobe.com/static/add-on-sdk/sdk.js";
-import HeaderComponent from "./HeaderComponent";
+import EventDetailComponent from "./EventDetailComponent";
 import LeaderboardComponent from "./LeaderboardComponent";
 import SummaryComponent from "./SummaryComponent";
 import PrintButton from "./PrintButton";
@@ -48,7 +48,7 @@ const App = ({ addOnUISdk }: { addOnUISdk: AddOnSDKAPI }) => {
         <Theme theme="express" scale="medium" color="light">
             <div className="container">
                 <button onClick={handleBackToEvents}>Back to Events</button>
-                <HeaderComponent title={selectedEvent.name} description={`From ${selectedEvent.start_date.toDateString()} to ${selectedEvent.end_date.toDateString()}`} />
+                <EventDetailComponent event={selectedEvent} />
                 <LeaderboardComponent contributors={selectedEvent.members} />
                 <SummaryComponent
                     totalAmount={totalAmount}
