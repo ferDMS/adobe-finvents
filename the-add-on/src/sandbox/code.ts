@@ -82,6 +82,11 @@ function start(): void {
 
             // Use createRectangleCoords to create the rectangle
             sandboxApi.createRectangleCoords(red, green, blue, x, y, w, h);
+        },
+        // To clear all elements in the editor context
+        clearAll: () => {
+            const insertionParent = editor.context.insertionParent;
+            insertionParent.children.clear();
         }
     };
 

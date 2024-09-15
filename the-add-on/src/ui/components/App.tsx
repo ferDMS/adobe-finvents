@@ -44,6 +44,7 @@ const App = ({ addOnUISdk, sandboxProxy }: { addOnUISdk: AddOnSDKAPI; sandboxPro
 
     const handleBackToEvents = async () => {
         setSelectedEvent(null);
+        sandboxProxy.clearAll();
         const events = await fetchEvents();
         setEvents(events);
     };
