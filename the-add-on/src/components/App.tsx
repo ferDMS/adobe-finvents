@@ -47,7 +47,7 @@ const App = ({ addOnUISdk }: { addOnUISdk: AddOnSDKAPI }) => {
     return (
         <Theme theme="express" scale="medium" color="light">
             <div className="container">
-                <button onClick={handleBackToEvents}>Back to Events</button>
+                <button className="back-button" onClick={handleBackToEvents}>Back to Events</button>
                 <EventDetailComponent event={selectedEvent} />
                 <LeaderboardComponent contributors={selectedEvent.members} />
                 <SummaryComponent
@@ -58,7 +58,7 @@ const App = ({ addOnUISdk }: { addOnUISdk: AddOnSDKAPI }) => {
                     contributionGoal={contributionGoal}
                     pendingContributors={pendingContributors}
                 />
-                <PrintButton />
+                <button className="print-button">Print Summary</button>
             </div>
         </Theme>
     );
