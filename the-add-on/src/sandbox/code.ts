@@ -26,7 +26,7 @@ function start(): void {
             rectangle.translation = { x: width / 8, y: height / 4 };
 
             // Define rectangle color.
-            const color = { red: 0.9254901960784314, green: 0.8745098039215686, blue: 0.8, alpha: 1 };
+            const color = { red: 0.8196078431372549, green: 0.9137254901960784, blue: 0.9647058823529412, alpha: 1 };
 
             // Fill the rectangle with the color.
             const rectangleFill = editor.makeColorFill(color);

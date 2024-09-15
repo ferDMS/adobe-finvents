@@ -25,6 +25,12 @@ const PrintButton: React.FC<PrintButtonProps> = ({ sandboxProxy, event }) => {
             const y = startY + index * spacing;
             sandboxProxy.createTextCoords(`${index + 1}. ${member.user.name}`, x, y);
         });
+
+        members.forEach((member, index) => {
+            const x = 3 * (width / 4);
+            const y = startY + index * spacing;
+            sandboxProxy.createTextCoords(`\$ ${member.paid}`, x, y);
+        });
     };
 
     return (
