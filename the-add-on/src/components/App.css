@@ -3,3 +3,8 @@
     display: flex;
     flex-direction: column;
 }
+
+/* App.css */
+.pie-chart {
+    margin-bottom: 20px;
+}
