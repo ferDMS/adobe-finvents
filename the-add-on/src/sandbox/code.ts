@@ -9,15 +9,21 @@ function start(): void {
     // APIs to be exposed to the UI runtime
     // i.e., to the `App.tsx` file of this add-on.
     const sandboxApi: DocumentSandboxApi = {
-        createRectangle: () => {
+        createBackgroundRectangle: () => {
             const rectangle = editor.createRectangle();
 
+            const currentPage = editor.context.currentPage;
+
+            const height = currentPage.height;
+            const width = currentPage.width;
+
             // Define rectangle dimensions.
-            rectangle.width = 240;
-            rectangle.height = 180;
+            // Width is up to 1/8 of total width margin
+            rectangle.width = width - 2*(width / 8);
+            rectangle.height = height - 2*(height / 4);
 
             // Define rectangle position.
-            rectangle.translation = { x: 10, y: 10 };
+            rectangle.translation = { x: width / 8, y: height / 4 };
 
             // Define rectangle color.
             const color = { red: 0.9254901960784314, green: 0.8745098039215686, blue: 0.8, alpha: 1 };

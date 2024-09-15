@@ -20,8 +20,8 @@ const App = ({ addOnUISdk, sandboxProxy }: { addOnUISdk: AddOnSDKAPI; sandboxPro
     const height = 1920;
     const width = 1080;
 
-    function handleClick() {
-        sandboxProxy.createRectangle();
+    function handleBackgroundRectangle() {
+        sandboxProxy.createBackgroundRectangle();
     }
     
     function handleClickText() {
@@ -77,7 +77,7 @@ const App = ({ addOnUISdk, sandboxProxy }: { addOnUISdk: AddOnSDKAPI; sandboxPro
                     <PrintButton sandboxProxy={sandboxProxy} event={selectedEvent} />
                 )}
                 <div className="container">
-                    <Button size="m" onClick={handleClick}>
+                    <Button size="m" onClick={handleBackgroundRectangle}>
                         Create Rectangle
                     </Button>
                     <Button size="m" onClick={handleClickText}>
