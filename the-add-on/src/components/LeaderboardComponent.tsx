@@ -14,14 +14,14 @@ const LeaderboardComponent: React.FC<LeaderboardComponentProps> = ({ contributor
             <table className="leaderboard-table">
                 <thead>
                     <tr>
-                        <th>Name</th>
+                        <th>User ID</th>
                         <th>Amount</th>
                     </tr>
                 </thead>
                 <tbody>
                     {contributors.map((contributor, index) => (
                         <tr key={index}>
-                            <td>{contributor.user.name}</td>
+                            <td>{contributor.user}</td>
                             <td>${contributor.paid}</td>
                         </tr>
                     ))}

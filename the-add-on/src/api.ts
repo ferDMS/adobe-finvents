@@ -1,6 +1,10 @@
+// the-add-on/src/api.ts
 export interface Product {
     _id: string;
     name: string;
+    units: number;
+    price: number;
+    paid: boolean;
 }
 
 export interface User {
@@ -8,16 +12,10 @@ export interface User {
     name: string;
 }
 
-export interface Requirement {
-    product: Product;
-    units: number;
-    paid: boolean;
-    paidBy: User;
-}
-
 export interface Member {
-    user: User;
+    user: string; // Assuming user is a reference to User ID
     paid: number;
+    _id: string;
 }
 
 export interface Event {
@@ -25,40 +23,21 @@ export interface Event {
     name: string;
     start_date: Date;
     end_date: Date;
-    requirements: Requirement[];
+    products: Product[];
     equitative: boolean;
-    admin: User;
+    admin: string; // Assuming admin is a reference to User ID
     members: Member[];
+    __v: number;
 }
 
 export const fetchEvents = async (): Promise<Event[]> => {
-    // Replace with actual API call
-    return [
-        {
-            _id: "1",
-            name: "Annual Charity Event",
-            start_date: new Date(),
-            end_date: new Date(),
-            requirements: [],
-            equitative: false,
-            admin: { _id: "1", name: "Admin" },
-            members: [
-                { user: { _id: "1", name: "John Doe" }, paid: 100 },
-                { user: { _id: "2", name: "Jane Smith" }, paid: 150 }
-            ]
-        },
-        {
-            _id: "2",
-            name: "Community Cleanup",
-            start_date: new Date(),
-            end_date: new Date(),
-            requirements: [],
-            equitative: false,
-            admin: { _id: "2", name: "Admin" },
-            members: [
-                { user: { _id: "3", name: "Alice Johnson" }, paid: 200 },
-                { user: { _id: "4", name: "Bob Brown" }, paid: 250 }
-            ]
-        }
-    ];
+    const response = await fetch('http://localhost:3000/api/events'); // Replace with actual API endpoint
+    const events: Event[] = await response.json();
+    
+    return events.map(event => ({
+        ...event,
+        start_date: new Date(event.start_date),
+        end_date: new Date(event.end_date)
+    }));
 };
+

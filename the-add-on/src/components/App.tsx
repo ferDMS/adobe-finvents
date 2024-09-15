@@ -39,9 +39,9 @@ const App = ({ addOnUISdk }: { addOnUISdk: AddOnSDKAPI }) => {
 
     const totalAmount = selectedEvent.members.reduce((sum, member) => sum + member.paid, 0);
     const totalContributors = selectedEvent.members.length;
-    const leastContributor = selectedEvent.members.length > 0 ? selectedEvent.members.reduce((prev, curr) => (prev.paid < curr.paid ? prev : curr)).user.name : "N/A";
-    const highestContribution = selectedEvent.members.length > 0 ? Math.max(...selectedEvent.members.map(member => member.paid)) : 0;
-    const contributionGoal = selectedEvent.requirements.reduce((sum, req) => sum + req.units, 0);
+    const leastContributor = selectedEvent.members.reduce((prev, curr) => (prev.paid < curr.paid ? prev : curr)).user;
+    const highestContribution = Math.max(...selectedEvent.members.map(member => member.paid));
+    const contributionGoal = selectedEvent.products.reduce((sum, product) => sum + product.price * product.units, 0);
     const pendingContributors = 10; // Replace with actual logic to calculate pending contributors
 
     return (
