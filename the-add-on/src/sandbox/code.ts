@@ -32,17 +32,23 @@ function start(): void {
         },
         createText: (textContent: string) => {
             const textObject = editor.createText();
+            
+            // Get current page
+            const currentPage = editor.context.currentPage;
 
+            const height = currentPage.height;
+            const width = currentPage.width;
+        
             // Set the text content.
             textObject.text = textContent;
-
-            // Define text position.
-            textObject.translation = { x: 50, y: 50 };
-
+        
+            // Define text position to be centered.
+            textObject.translation = { x: width / 2, y: height / 2 };
+            
             // Add the text object to the document.
             const insertionParent = editor.context.insertionParent;
             insertionParent.children.append(textObject);
-        }
+        },
     };
 
     // Expose `sandboxApi` to the UI runtime.
