@@ -65,7 +65,9 @@ const App = ({ addOnUISdk, sandboxProxy }: { addOnUISdk: AddOnSDKAPI; sandboxPro
             <div className="container">
                 <button className="back-button" onClick={handleBackToEvents}>Back to Events</button>
                 <EventDetailComponent event={selectedEvent} />
-                <LeaderboardComponent contributors={selectedEvent.members} />
+                {selectedEvent && (
+                    <PrintButton sandboxProxy={sandboxProxy} event={selectedEvent} />
+                )}
                 <SummaryComponent
                     totalAmount={totalAmount}
                     totalContributors={totalContributors}
@@ -74,17 +76,7 @@ const App = ({ addOnUISdk, sandboxProxy }: { addOnUISdk: AddOnSDKAPI; sandboxPro
                     pendingContributors={pendingContributors}
                     leastContributor={leastContributor}
                 />
-                {selectedEvent && (
-                    <PrintButton sandboxProxy={sandboxProxy} event={selectedEvent} />
-                )}
-                <div className="container">
-                    <Button size="m" onClick={handleBackgroundRectangle}>
-                        Create Rectangle
-                    </Button>
-                    <Button size="m" onClick={handleClickText}>
-                        Create Text
-                    </Button>
-                </div>
+                <LeaderboardComponent contributors={selectedEvent.members} />
             </div>
         </Theme>
     );

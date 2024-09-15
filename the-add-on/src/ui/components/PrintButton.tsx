@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { DocumentSandboxApi } from '../../models/DocumentSandboxApi';
 import { Event } from '../api';
-import './PrintButton.css'; // Import the new CSS file
+import './PrintButton.css';
 
 interface PrintButtonProps {
     sandboxProxy: DocumentSandboxApi;
@@ -9,11 +9,14 @@ interface PrintButtonProps {
 }
 
 const PrintButton: React.FC<PrintButtonProps> = ({ sandboxProxy, event }) => {
+    const [isClicked, setIsClicked] = useState(false);
 
     const height = 1920;
     const width = 1080;
 
     const handlePrintStatistics = () => {
+        // Disable the button after it is clicked
+        setIsClicked(true);
 
         // Print rectangle in the background
         sandboxProxy.createBackgroundRectangle();
@@ -44,8 +47,12 @@ const PrintButton: React.FC<PrintButtonProps> = ({ sandboxProxy, event }) => {
     };
 
     return (
-        <button className="print-button" onClick={handlePrintStatistics}>
-            Print Participants
+        <button 
+            className={`print-button ${isClicked ? 'disabled' : ''}`} 
+            onClick={handlePrintStatistics} 
+            disabled={isClicked}
+        >
+            Export Information
         </button>
     );
 };
