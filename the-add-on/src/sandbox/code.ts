@@ -9,33 +9,6 @@ function start(): void {
     // APIs to be exposed to the UI runtime
     // i.e., to the `App.tsx` file of this add-on.
     const sandboxApi: DocumentSandboxApi = {
-        createBackgroundRectangle: () => {
-            const rectangle = editor.createRectangle();
-
-            const currentPage = editor.context.currentPage;
-
-            const height = currentPage.height;
-            const width = currentPage.width;
-
-            // Define rectangle dimensions.
-            // Width is up to 1/8 of total width margin
-            rectangle.width = width - 2*(width / 8);
-            rectangle.height = height - 2*(height / 4);
-
-            // Define rectangle position.
-            rectangle.translation = { x: width / 8, y: height / 4 };
-
-            // Define rectangle color.
-            const color = { red: 0.8196078431372549, green: 0.9137254901960784, blue: 0.9647058823529412, alpha: 1 };
-
-            // Fill the rectangle with the color.
-            const rectangleFill = editor.makeColorFill(color);
-            rectangle.fill = rectangleFill;
-
-            // Add the rectangle to the document.
-            const insertionParent = editor.context.insertionParent;
-            insertionParent.children.append(rectangle);
-        },
         createText: (textContent: string) => {
             const textObject = editor.createText();
             
@@ -69,6 +42,46 @@ function start(): void {
             // Add the text object to the document.
             const insertionParent = editor.context.insertionParent;
             insertionParent.children.append(textObject);
+        },
+        createRectangleCoords: (red: number, green: number, blue: number, x: number, y: number, w: number, h: number) => {
+            const rectangle = editor.createRectangle();
+
+            rectangle.width = w;
+            rectangle.height = h;
+
+            // Define rectangle position.
+            rectangle.translation = { x: x, y: y };
+
+            // Define rectangle color.
+            const color = { red: red, green: green, blue: blue, alpha: 1 };
+
+            // Fill the rectangle with the color.
+            const rectangleFill = editor.makeColorFill(color);
+            rectangle.fill = rectangleFill;
+
+            // Add the rectangle to the document.
+            const insertionParent = editor.context.insertionParent;
+            insertionParent.children.append(rectangle);
+        },
+        createBackgroundRectangle: () => {
+            const currentPage = editor.context.currentPage;
+            const pageH = currentPage.height;
+            const pageW = currentPage.width;
+
+            const w = pageW - (2*(pageW/8));
+            const h = pageH - (2*(pageH/4));
+
+            // Define rectangle color.
+            const red = 0.8196078431372549;
+            const green = 0.9137254901960784;
+            const blue = 0.9647058823529412;
+
+            // Define rectangle position.
+            const x = pageW / 8;
+            const y = pageH / 4;
+
+            // Use createRectangleCoords to create the rectangle
+            sandboxApi.createRectangleCoords(red, green, blue, x, y, w, h);
         }
     };
 

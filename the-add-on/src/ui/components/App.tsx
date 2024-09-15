@@ -13,7 +13,6 @@ import PrintButton from "./PrintButton";
 import EventListComponent from "./EventListComponent";
 import { fetchEvents, Event, Member } from "../api";
 import { DocumentSandboxApi } from "../../models/DocumentSandboxApi";
-import { editor } from "express-document-sdk";
 
 const App = ({ addOnUISdk, sandboxProxy }: { addOnUISdk: AddOnSDKAPI; sandboxProxy: DocumentSandboxApi }) => {
 
