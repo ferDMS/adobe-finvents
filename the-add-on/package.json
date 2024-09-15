@@ -1,5 +1,5 @@
 {
-    "name": "the-add-on",
+    "name": "name",
     "version": "1.0.0",
     "description": "Adobe Creative Cloud Web Add-on.",
     "scripts": {
@@ -18,8 +18,7 @@
         "@swc-react/button": "0.39.4",
         "@swc-react/theme": "0.39.4",
         "react": "18.2.0",
-        "react-dom": "18.2.0",
-        "recharts": "^2.12.7"
+        "react-dom": "18.2.0"
     },
     "devDependencies": {
         "@adobe/ccweb-add-on-scripts": "^2.4.0",

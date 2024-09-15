@@ -1,6 +1,6 @@
 {
-    "testId": "0bf8e212-2b64-4d1a-b648-2f8987a7e6a6",
-    "name": "The Add On",
+    "testId": "5f095f5d-66fd-4c3a-b5f1-743874ff5cd9",
+    "name": "Name",
     "version": "1.0.0",
     "manifestVersion": 2,
     "requirements": {
@@ -15,7 +15,8 @@
         {
             "type": "panel",
             "id": "panel1",
-            "main": "index.html"
+            "main": "index.html",
+            "documentSandbox": "code.js"
         }
     ]
 }

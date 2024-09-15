@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import "@spectrum-web-components/theme/express/scale-medium.js";
 import "@spectrum-web-components/theme/express/theme-light.js";
+import { Button } from "@swc-react/button";
 import { Theme } from "@swc-react/theme";
 import "./App.css";
 import { AddOnSDKAPI } from "https://new.express.adobe.com/static/add-on-sdk/sdk.js";
@@ -11,8 +12,13 @@ import SummaryComponent from "./SummaryComponent";
 import PrintButton from "./PrintButton";
 import EventListComponent from "./EventListComponent";
 import { fetchEvents, Event, Member } from "../api";
+import { DocumentSandboxApi } from "../../models/DocumentSandboxApi";
 
-const App = ({ addOnUISdk }: { addOnUISdk: AddOnSDKAPI }) => {
+const App = ({ addOnUISdk, sandboxProxy }: { addOnUISdk: AddOnSDKAPI; sandboxProxy: DocumentSandboxApi }) => {
+    function handleClick() {
+        sandboxProxy.createRectangle();
+    }
+
     const [events, setEvents] = useState<Event[]>([]);
     const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
 
@@ -59,6 +65,11 @@ const App = ({ addOnUISdk }: { addOnUISdk: AddOnSDKAPI }) => {
                     pendingContributors={pendingContributors}
                 />
                 <button className="print-button">Print Summary</button>
+                <div className="container">
+                    <Button size="m" onClick={handleClick}>
+                        Create Rectangle
+                    </Button>
+                </div>
             </div>
         </Theme>
     );
