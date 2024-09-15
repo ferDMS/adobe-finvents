@@ -24,6 +24,13 @@ const PrintButton: React.FC<PrintButtonProps> = ({ sandboxProxy, event }) => {
         // Print rectangle as header of the background rectangle in a slightly darker shade
         sandboxProxy.createRectangleCoords(0.4, 0.4823529411764706, 0.7764705882352941, width/8, height/4, width - (2*(width/8)), 100);
 
+        sandboxProxy.createTextCoords(event.name, width/2-50, height/4 + 150)
+
+        // Título
+        sandboxProxy.createTextCoords(`Starts: ${new Date(event.start_date).toLocaleDateString()}`, width / 3 - 100, height / 4 + 200);
+        sandboxProxy.createTextCoords(`Ends: ${new Date(event.end_date).toLocaleDateString()}`, 2 * (width / 3) - 100, height / 4 + 200);
+
+
         const members = event.members;
         const spacing = 50;
         const n = members.length;
@@ -44,6 +51,9 @@ const PrintButton: React.FC<PrintButtonProps> = ({ sandboxProxy, event }) => {
             const y = startY + index * spacing;
             sandboxProxy.createTextCoords(`\$ ${member.paid}`, x, y);
         });
+
+        // Print rectangle as footer of the background rectangle in a slightly darker shade
+        sandboxProxy.createRectangleCoords(0.4, 0.4823529411764706, 0.7764705882352941, width/8, height - height/4 - 100, width - (2*(width/8)), 100);
     };
 
     return (

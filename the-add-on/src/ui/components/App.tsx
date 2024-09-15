@@ -18,18 +18,13 @@ const App = ({ addOnUISdk, sandboxProxy }: { addOnUISdk: AddOnSDKAPI; sandboxPro
     const height = 1920;
     const width = 1080;
 
-    function handleBackgroundRectangle() {
-        sandboxProxy.createBackgroundRectangle();
-    }
-    
-    function handleClickText() {
-        sandboxProxy.createText("Hello worldddd!!");
-    }
-
     const [events, setEvents] = useState<Event[]>([]);
     const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
 
     useEffect(() => {
+
+        sandboxProxy.clearAll();
+
         const loadEvents = async () => {
             const events = await fetchEvents();
             setEvents(events);
