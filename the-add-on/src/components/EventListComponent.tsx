@@ -17,7 +17,7 @@ const EventListComponent: React.FC<EventListComponentProps> = ({ events, onSelec
         <div className="event-list">
             <div className="header">
                 <h1 className="main-title">FinVent</h1>
-                <p className="description">Discover insights about our events and export them into beautifully designed formats.</p>
+                <p className="description">Discover insights about your events and export them into beautifully designed formats.</p>
             </div>
             <div className="event-cards">
                 {events.map(event => (
