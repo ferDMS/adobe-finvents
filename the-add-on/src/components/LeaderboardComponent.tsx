@@ -1,3 +1,4 @@
+// the-add-on/src/components/LeaderboardComponent.tsx
 import React from "react";
 import { Member } from "../api";
 import "./LeaderboardComponent.css";
@@ -17,7 +18,7 @@ const LeaderboardComponent: React.FC<LeaderboardComponentProps> = ({ contributor
                 </li>
                 {contributors.map((contributor, index) => (
                     <li key={index} className="leaderboard-item">
-                        <span>{contributor.user}</span>
+                        <span>{contributor.user.name}</span>
                         <span>{contributor.paid.toFixed(2)}</span>
                     </li>
                 ))}

@@ -9,11 +9,15 @@ export interface Product {
 
 export interface User {
     _id: string;
+    clerkUserId: string;
     name: string;
+    publicaciones: any[]; // Assuming publicaciones is an array of some type
+    balance: number;
+    __v: number;
 }
 
 export interface Member {
-    user: string; // Assuming user is a reference to User ID
+    user: User;
     paid: number;
     _id: string;
 }
@@ -25,8 +29,9 @@ export interface Event {
     end_date: Date;
     products: Product[];
     equitative: boolean;
-    admin: string; // Assuming admin is a reference to User ID
+    admin: User;
     members: Member[];
+    total: number;
     __v: number;
 }
 

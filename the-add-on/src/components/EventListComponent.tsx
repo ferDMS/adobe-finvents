@@ -1,3 +1,4 @@
+// the-add-on/src/components/EventListComponent.tsx
 import React from "react";
 import { Event } from "../api";
 import "./EventListComponent.css";
@@ -25,12 +26,10 @@ const EventListComponent: React.FC<EventListComponentProps> = ({ events, onSelec
                         <h3 className="event-title">{event.name}</h3>
                         <div className="event-details">
                             <span className="event-contributors">
-                                <i className="fas fa-user"></i>
-                                <span>{event.members.length}</span>
+                                <i className="fas fa-user"></i> {event.members.length}
                             </span>
                             <span className="event-cost">
-                                <i className="fas fa-dollar-sign"></i>
-                                <span>{event.products.reduce((total, product) => total + product.price, 0).toFixed(2)}</span>
+                                <i className="fas fa-dollar-sign"></i> {event.products.reduce((total, product) => total + product.price, 0).toFixed(2)}
                             </span>
                         </div>
                         <button className="event-button" onClick={() => handleEventClick(event)}>More Info</button>
