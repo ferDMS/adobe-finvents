@@ -20,7 +20,7 @@ function start(): void {
             rectangle.translation = { x: 10, y: 10 };
 
             // Define rectangle color.
-            const color = { red: 0.32, green: 0.34, blue: 0.89, alpha: 1 };
+            const color = { red: 0.9254901960784314, green: 0.8745098039215686, blue: 0.8, alpha: 1 };
 
             // Fill the rectangle with the color.
             const rectangleFill = editor.makeColorFill(color);
@@ -49,6 +49,21 @@ function start(): void {
             const insertionParent = editor.context.insertionParent;
             insertionParent.children.append(textObject);
         },
+        createTextCoords: (textContent: string, x: number, y: number) => {
+            const textObject = editor.createText();
+
+            // Set the text content.
+            textObject.text = textContent;
+        
+            textObject.textAlignment = 1;
+
+            // Define text position to be centered.
+            textObject.translation = { x: x, y: y};
+
+            // Add the text object to the document.
+            const insertionParent = editor.context.insertionParent;
+            insertionParent.children.append(textObject);
+        }
     };
 
     // Expose `sandboxApi` to the UI runtime.

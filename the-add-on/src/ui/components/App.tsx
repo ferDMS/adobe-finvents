@@ -13,8 +13,13 @@ import PrintButton from "./PrintButton";
 import EventListComponent from "./EventListComponent";
 import { fetchEvents, Event, Member } from "../api";
 import { DocumentSandboxApi } from "../../models/DocumentSandboxApi";
+import { editor } from "express-document-sdk";
 
 const App = ({ addOnUISdk, sandboxProxy }: { addOnUISdk: AddOnSDKAPI; sandboxProxy: DocumentSandboxApi }) => {
+
+    const height = 1920;
+    const width = 1080;
+
     function handleClick() {
         sandboxProxy.createRectangle();
     }
@@ -68,7 +73,9 @@ const App = ({ addOnUISdk, sandboxProxy }: { addOnUISdk: AddOnSDKAPI; sandboxPro
                     contributionGoal={contributionGoal}
                     pendingContributors={pendingContributors}
                 />
-                <button className="print-button">Print Summary</button>
+                {selectedEvent && (
+                    <PrintButton sandboxProxy={sandboxProxy} event={selectedEvent} />
+                )}
                 <div className="container">
                     <Button size="m" onClick={handleClick}>
                         Create Rectangle
