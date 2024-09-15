@@ -30,7 +30,23 @@ const PrintButton: React.FC<PrintButtonProps> = ({ sandboxProxy, event }) => {
         sandboxProxy.createTextCoords(`Starts: ${new Date(event.start_date).toLocaleDateString()}`, width / 3 - 100, height / 4 + 200);
         sandboxProxy.createTextCoords(`Ends: ${new Date(event.end_date).toLocaleDateString()}`, 2 * (width / 3) - 100, height / 4 + 200);
 
+        // Event summary
+        const totalAmount = event.products.reduce((total, product) => total + product.price, 0).toFixed(2);
+        const leastContributor = event.members.reduce((min, member) => member.paid < min.paid ? member : min, event.members[0]).user.name;
+        const totalContributors = event.members.length;
+        const highestContribution = event.members.reduce((max, member) => member.paid > max ? member.paid : max, 0).toFixed(2);
+        const contributionGoal = event.products.reduce((sum, product) => sum + product.price * product.units, 0);
+        const pendingContributors = event.members.filter(member => !member.paid).length;
 
+        sandboxProxy.createTextCoords(`Total Contributions: $${totalAmount}`, width / 3 - 200, height / 4 + 300);
+        sandboxProxy.createTextCoords(`Least Contributor: ${leastContributor}`, 2 * (width / 3) - 200, height / 4 + 300);
+        
+        sandboxProxy.createTextCoords(`Total Contributors: ${totalContributors}`, width / 3 - 200, height / 4 + 330);
+        sandboxProxy.createTextCoords(`Highest Contribution: $${highestContribution}`, 2 * (width / 3) - 200, height / 4 + 330);
+        
+        sandboxProxy.createTextCoords(`Contribution Goal: $${contributionGoal}`, width / 3 - 200, height / 4 + 360);
+        sandboxProxy.createTextCoords(`Pending Contributors: ${pendingContributors}`, 2 * (width / 3) - 200, height / 4 + 360);
+        
         const members = event.members;
         const spacing = 50;
         const n = members.length;
@@ -51,18 +67,11 @@ const PrintButton: React.FC<PrintButtonProps> = ({ sandboxProxy, event }) => {
             const y = startY + index * spacing;
             sandboxProxy.createTextCoords(`\$ ${member.paid}`, x, y);
         });
-
-        // Print rectangle as footer of the background rectangle in a slightly darker shade
-        sandboxProxy.createRectangleCoords(0.4, 0.4823529411764706, 0.7764705882352941, width/8, height - height/4 - 100, width - (2*(width/8)), 100);
     };
 
     return (
-        <button 
-            className={`print-button ${isClicked ? 'disabled' : ''}`} 
-            onClick={handlePrintStatistics} 
-            disabled={isClicked}
-        >
-            Export Information
+        <button className="print-button" onClick={handlePrintStatistics} disabled={isClicked}>
+            Print Participants
         </button>
     );
 };
