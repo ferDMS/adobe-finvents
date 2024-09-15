@@ -1,36 +1,27 @@
-// the-add-on/src/components/LeaderboardComponent.tsx
 import React from "react";
-import "./LeaderboardComponent.css";
 import { Member } from "../api";
+import "./LeaderboardComponent.css";
 
 interface LeaderboardComponentProps {
     contributors: Member[];
 }
 
 const LeaderboardComponent: React.FC<LeaderboardComponentProps> = ({ contributors }) => {
-    if (contributors.length === 0) {
-        return <p>No contributors available.</p>;
-    }
-
     return (
-        <div className="leaderboard-container">
+        <div className="leaderboard">
             <h2>Leaderboard</h2>
-            <table className="leaderboard-table">
-                <thead>
-                    <tr>
-                        <th>UserID</th>
-                        <th>Amount</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {contributors.map((contributor, index) => (
-                        <tr key={index}>
-                            <td>{contributor.user}</td>
-                            <td>${contributor.paid}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+            <ul className="leaderboard-list">
+                <li className="leaderboard-item header">
+                    <span>User</span>
+                    <span>Amount Paid</span>
+                </li>
+                {contributors.map((contributor, index) => (
+                    <li key={index} className="leaderboard-item">
+                        <span>{contributor.user}</span>
+                        <span>{contributor.paid.toFixed(2)}</span>
+                    </li>
+                ))}
+            </ul>
         </div>
     );
 };

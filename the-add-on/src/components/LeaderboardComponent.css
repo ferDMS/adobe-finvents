@@ -1,34 +1,36 @@
-.leaderboard-container {
-  margin: 20px 0; /* Remove horizontal margin */
-  padding: 20px 0; /* Remove horizontal padding */
-  border-radius: 8px;
+/* the-add-on/src/components/LeaderboardComponent.css */
+.leaderboard {
+  margin: 20px 0;
 }
 
-.leaderboard-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.leaderboard-table th,
-.leaderboard-table td {
-  padding: 10px;
-  text-align: left;
-  width: 50%; /* Ensure columns take up equal space */
-}
-
-.leaderboard-table th {
-  background-color: #4CAF50;
+.leaderboard-header {
+  background-color: #007BFF; /* Change to blue */
   color: white;
+  padding: 10px;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: bold;
 }
 
-.leaderboard-table tr:nth-child(even) {
-  background-color: #f2f2f2;
+.leaderboard-list {
+  list-style: none;
+  padding: 0;
 }
 
-.leaderboard-table tr:hover {
-  background-color: #ddd;
+.leaderboard-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
 }
 
-.leaderboard-table td {
-  border: none;
+.leaderboard-item.header {
+  background-color: #007BFF; /* Change to blue */
+  color: white;
+  font-weight: bold;
+}
+
+.leaderboard-item:last-child {
+  border-bottom: none;
 }
