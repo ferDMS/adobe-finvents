@@ -4,8 +4,8 @@ import React from "react";
 const PrimaryComponent = () => {
     return (
         <div>
-            <h1>Welcome to the Primary Component</h1>
-            <p>This is a basic component.</p>
+            <h1>Welcome to FinVents</h1>
+            <p>Are you ready to make invitations like no one else?</p>
         </div>
     );
 };
