@@ -37,7 +37,7 @@ export const fetchEvents = async (): Promise<Event[]> => {
     return events.map(event => ({
         ...event,
         start_date: new Date(event.start_date),
-        end_date: new Date(event.end_date)
+        end_date: new Date(event.end_date),
+        members: event.members || [] // Ensure members array is always defined
     }));
 };
-

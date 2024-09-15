@@ -8,13 +8,17 @@ interface LeaderboardComponentProps {
 }
 
 const LeaderboardComponent: React.FC<LeaderboardComponentProps> = ({ contributors }) => {
+    if (contributors.length === 0) {
+        return <p>No contributors available.</p>;
+    }
+
     return (
         <div className="leaderboard-container">
             <h2>Leaderboard</h2>
             <table className="leaderboard-table">
                 <thead>
                     <tr>
-                        <th>User ID</th>
+                        <th>UserID</th>
                         <th>Amount</th>
                     </tr>
                 </thead>
