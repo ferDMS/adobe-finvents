@@ -13,7 +13,7 @@ const PrintButton: React.FC<PrintButtonProps> = ({ sandboxProxy, event }) => {
     const height = 1920;
     const width = 1080;
 
-    const handleClickListMembers = () => {
+    const handlePrintStatistics = () => {
         const members = event.members;
         const spacing = 50;
         const n = members.length;
@@ -34,7 +34,7 @@ const PrintButton: React.FC<PrintButtonProps> = ({ sandboxProxy, event }) => {
     };
 
     return (
-        <button className="print-button" onClick={handleClickListMembers}>
+        <button className="print-button" onClick={handlePrintStatistics}>
             Print Participants
         </button>
     );

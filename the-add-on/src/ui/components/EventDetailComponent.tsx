@@ -14,11 +14,11 @@ const EventDetailComponent: React.FC<EventDetailComponentProps> = ({ event }) =>
             <div className="event-duration">
                 <span className="event-start-date">
                     <i className="fas fa-calendar-alt"></i>
-                    <span>{event.start_date.toLocaleDateString()}</span>
+                    <span>Starts: {event.start_date.toLocaleDateString()}</span>
                 </span>
                 <span className="event-end-date">
                     <i className="fas fa-calendar-alt"></i>
-                    <span>{event.end_date.toLocaleDateString()}</span>
+                    <span>Ends: {event.end_date.toLocaleDateString()}</span>
                 </span>
             </div>
         </div>

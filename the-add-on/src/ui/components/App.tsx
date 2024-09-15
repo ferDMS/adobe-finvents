@@ -1,4 +1,3 @@
-// the-add-on/src/components/App.tsx
 import React, { useState, useEffect } from "react";
 import "@spectrum-web-components/theme/express/scale-medium.js";
 import "@spectrum-web-components/theme/express/theme-light.js";
@@ -43,8 +42,10 @@ const App = ({ addOnUISdk, sandboxProxy }: { addOnUISdk: AddOnSDKAPI; sandboxPro
         setSelectedEvent(event);
     };
 
-    const handleBackToEvents = () => {
+    const handleBackToEvents = async () => {
         setSelectedEvent(null);
+        const events = await fetchEvents();
+        setEvents(events);
     };
 
     if (!selectedEvent) {
@@ -52,11 +53,11 @@ const App = ({ addOnUISdk, sandboxProxy }: { addOnUISdk: AddOnSDKAPI; sandboxPro
     }
 
     const totalAmount = selectedEvent.members.reduce((sum, member) => sum + member.paid, 0);
-    const totalContributors = selectedEvent.members.length;
+    const totalContributors = selectedEvent.members.filter(member => member.paid > 0).length;
     const leastContributor = selectedEvent.members.length > 0 ? selectedEvent.members.reduce((prev, curr) => (prev.paid < curr.paid ? prev : curr)).user.name : "N/A";
     const highestContribution = selectedEvent.members.length > 0 ? Math.max(...selectedEvent.members.map(member => member.paid)) : 0;
     const contributionGoal = selectedEvent.products.reduce((sum, product) => sum + product.price * product.units, 0);
-    const pendingContributors = 10; // Replace with actual logic to calculate pending contributors
+    const pendingContributors = selectedEvent.members.filter(member => member.paid === 0).length;
 
     return (
         <Theme theme="express" scale="medium" color="light">
@@ -66,11 +67,11 @@ const App = ({ addOnUISdk, sandboxProxy }: { addOnUISdk: AddOnSDKAPI; sandboxPro
                 <LeaderboardComponent contributors={selectedEvent.members} />
                 <SummaryComponent
                     totalAmount={totalAmount}
-                    leastContributor={leastContributor}
                     totalContributors={totalContributors}
                     highestContribution={highestContribution}
                     contributionGoal={contributionGoal}
                     pendingContributors={pendingContributors}
+                    leastContributor={leastContributor}
                 />
                 {selectedEvent && (
                     <PrintButton sandboxProxy={sandboxProxy} event={selectedEvent} />
