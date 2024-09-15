@@ -18,6 +18,10 @@ const App = ({ addOnUISdk, sandboxProxy }: { addOnUISdk: AddOnSDKAPI; sandboxPro
     function handleClick() {
         sandboxProxy.createRectangle();
     }
+    
+    function handleClickText() {
+        sandboxProxy.createText("Hello worldddd!!");
+    }
 
     const [events, setEvents] = useState<Event[]>([]);
     const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
@@ -68,6 +72,9 @@ const App = ({ addOnUISdk, sandboxProxy }: { addOnUISdk: AddOnSDKAPI; sandboxPro
                 <div className="container">
                     <Button size="m" onClick={handleClick}>
                         Create Rectangle
+                    </Button>
+                    <Button size="m" onClick={handleClickText}>
+                        Create Text
                     </Button>
                 </div>
             </div>

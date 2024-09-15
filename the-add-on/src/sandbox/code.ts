@@ -29,6 +29,19 @@ function start(): void {
             // Add the rectangle to the document.
             const insertionParent = editor.context.insertionParent;
             insertionParent.children.append(rectangle);
+        },
+        createText: (textContent: string) => {
+            const textObject = editor.createText();
+
+            // Set the text content.
+            textObject.text = textContent;
+
+            // Define text position.
+            textObject.translation = { x: 50, y: 50 };
+
+            // Add the text object to the document.
+            const insertionParent = editor.context.insertionParent;
+            insertionParent.children.append(textObject);
         }
     };
 
